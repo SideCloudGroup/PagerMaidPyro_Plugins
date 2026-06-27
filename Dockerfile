@@ -1,10 +1,13 @@
 FROM python:3.12-alpine
 
-WORKDIR /app
-ADD main.py /app
-ADD requirements.txt /app
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
 
-RUN pip install -r requirements.txt
+WORKDIR /app
+COPY main.py requirements.txt /app/
+
+RUN pip install --no-cache-dir -r requirements.txt
 RUN rm requirements.txt
 
 CMD python -u /app/main.py

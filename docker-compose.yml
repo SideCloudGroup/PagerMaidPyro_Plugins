@@ -1,0 +1,9 @@
+services:
+  pagermaidpyro-plugins:
+    image: ghcr.io/sidecloudgroup/pagermaidpyro_plugins:latest
+    container_name: pagermaidpyro-plugins
+    restart: unless-stopped
+    ports:
+      - "3526:3526"
+    volumes:
+      - ./config.toml:/app/config.toml:ro
